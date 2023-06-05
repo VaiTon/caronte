@@ -6,7 +6,7 @@ require (
 	github.com/flier/gohs v1.1.0
 	github.com/gin-gonic/contrib v0.0.0-20201101042839-6a891bf89f19
 	github.com/gin-gonic/gin v1.7.7
-	github.com/go-playground/validator/v10 v10.8.0
+	github.com/go-playground/validator/v10 v10.14.1
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/gopacket v1.1.19
