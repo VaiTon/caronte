@@ -30,6 +30,16 @@ inotifywait -q -m "$PCAP_DIR" -e close_write |
       echo "[$(date +%H:%M:%S)] The file $file appeared in directory $dir via $action"
       curl_output=$(curl -sS -X POST "http://$CARONTE_IP:3333/api/pcap/upload" -H "Content-Type: multipart/form-data" -F "file=@$dir/$file" -F "flush_all=false" --user "admin:{{ caronte_pwd }}")
       echo "[CARONTE] $curl_output"
-      rm "$dir/$file" 
+      
+      #Opz per mantenere dei pcap fino ad un massimo di dimensione indicato
+      SIZE=$(du -B 1 $dir | cut -f 1)    
+      # 2GB = 2147483648 bytes
+      # 10GB = 10737418240 bytes
+      if [[ $SIZE -gt 147483648 ]]; then
+      	  echo "deleting file $dir/$file"
+          rm "$dir/$file"
+      fi
+      
+      # rm "$dir/$file"
       echo
     done
